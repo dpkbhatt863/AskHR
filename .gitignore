@@ -1,4 +1,6 @@
-core
+core\rag_chain.py
+core\evaluator.py
+core\document_processor.py
 eval
 data
 app.py
