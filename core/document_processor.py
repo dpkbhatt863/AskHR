@@ -44,7 +44,7 @@ def load_and_index_policies():
 
     return indexed_summary
 
-def retrieve_relevant_chunks(query, top_k=5):
+def retrieve_relevant_chunks(query, top_k=3):
     if _collection.count() == 0: 
         return []
     embedding = _model.encode([query]).tolist()

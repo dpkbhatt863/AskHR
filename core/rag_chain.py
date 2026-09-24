@@ -22,7 +22,7 @@ Context:
     ("human", "{question}"),
 ])
 
-def ask_question(question, top_k=5):
+def ask_question(question, top_k=3):
     start = time.time()
     chunks = retrieve_relevant_chunks(question, top_k)
 
