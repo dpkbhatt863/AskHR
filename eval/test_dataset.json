@@ -1,0 +1,91 @@
+{
+  "dataset_name": "Nexora HR Policy RAG Evaluation Set",
+  "description": "10 test questions (easy to medium difficulty) for evaluating retrieval and answer quality against the Nexora Technologies HR Policy Handbook (Parts 1-3).",
+  "source_documents": [
+    "nexora_hr_policy_part1.pdf",
+    "nexora_hr_policy_part2.pdf",
+    "nexora_hr_policy_part3.pdf"
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "question": "What are the standard working hours at Nexora?",
+      "expected_answer": "9:30 AM to 6:30 PM, Monday to Friday, including a one-hour lunch break (8 productive hours per day).",
+      "source_document": "nexora_hr_policy_part1.pdf",
+      "source_section": "2.2 Working Days and Hours"
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "question": "How many casual leave days does an employee get per year?",
+      "expected_answer": "8 days of casual leave per year, non-carry-forward and non-encashable.",
+      "source_document": "nexora_hr_policy_part1.pdf",
+      "source_section": "4.3 Casual Leave"
+    },
+    {
+      "id": 3,
+      "difficulty": "easy",
+      "question": "What is the probation period for a new employee?",
+      "expected_answer": "6 months from the date of joining, extendable by up to 3 additional months.",
+      "source_document": "nexora_hr_policy_part1.pdf",
+      "source_section": "3.1 Probation Period"
+    },
+    {
+      "id": 4,
+      "difficulty": "easy",
+      "question": "What is the sum insured under the Company's group health insurance policy?",
+      "expected_answer": "INR 5,00,000 per family per year, covering employee, spouse, and up to two dependent children.",
+      "source_document": "nexora_hr_policy_part2.pdf",
+      "source_section": "6.5 Group Health Insurance"
+    },
+    {
+      "id": 5,
+      "difficulty": "easy",
+      "question": "Who should an employee contact to report a suspected security incident, such as a phishing email?",
+      "expected_answer": "security@nexora-tech.example, within 2 hours of discovery.",
+      "source_document": "nexora_hr_policy_part3.pdf",
+      "source_section": "12.5 Incident Reporting"
+    },
+    {
+      "id": 6,
+      "difficulty": "medium",
+      "question": "How many days does an employee have to file a POSH complaint after an incident, and can that deadline be extended?",
+      "expected_answer": "3 months from the date of the incident (or last incident in a series); the Internal Committee may extend it by a further 3 months if satisfied that circumstances prevented earlier filing.",
+      "source_document": "nexora_hr_policy_part2.pdf",
+      "source_section": "9.4 Making a Complaint"
+    },
+    {
+      "id": 7,
+      "difficulty": "medium",
+      "question": "How many days of notice must a confirmed L4 employee give before resigning, and is a buyout of the notice period allowed?",
+      "expected_answer": "90 days' written notice for grades L4 and above after confirmation. A buyout is allowed at the Company's sole discretion, but not for employees under disciplinary inquiry or in critical client roles.",
+      "source_document": "nexora_hr_policy_part1.pdf",
+      "source_section": "3.3 Notice Period; 3.4 Notice Period Buyout"
+    },
+    {
+      "id": 8,
+      "difficulty": "medium",
+      "question": "How many days of paid paternity leave is a male employee entitled to, and by when must it be availed?",
+      "expected_answer": "10 working days of paid paternity leave, to be availed within 6 months of the birth or adoption, split into no more than two blocks.",
+      "source_document": "nexora_hr_policy_part1.pdf",
+      "source_section": "4.8 Paternity Leave"
+    },
+    {
+      "id": 9,
+      "difficulty": "medium",
+      "question": "If an employee is terminated before the variable pay payout date, are they eligible to receive it, and separately, can someone terminated for misconduct be rehired later?",
+      "expected_answer": "No, employees who resign or are terminated before the payout date are not eligible for variable pay. Separately, employees terminated for misconduct are not eligible for rehire (former employees who left in good standing may be considered after a 6-month cooling-off period).",
+      "source_document": "nexora_hr_policy_part2.pdf and nexora_hr_policy_part3.pdf",
+      "source_section": "6.7 Variable Pay; 13.6 Rehire Policy"
+    },
+    {
+      "id": 10,
+      "difficulty": "medium",
+      "question": "Can an employee accept a gift worth INR 2,500 from a vendor without informing anyone, and can they accept cash instead?",
+      "expected_answer": "No. Gifts, meals, or entertainment valued above INR 2,000 must be declared to HR within 7 days. Cash or cash equivalents must never be accepted, regardless of value.",
+      "source_document": "nexora_hr_policy_part2.pdf",
+      "source_section": "8.4 Gifts and Hospitality"
+    }
+  ]
+}
