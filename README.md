@@ -1,6 +1,6 @@
 # 🏢 AskHR — AI Assistant for Employee Policies
 
-A Retrieval-Augmented Generation (RAG) chatbot built with LangChain, ChromaDB, and Groq (Llama 3.3 70B) that answers employee questions based on company HR policy PDFs with page-level citations and an automated LLM-as-a-Judge evaluation framework.
+A Retrieval-Augmented Generation (RAG) chatbot built with LangChain, ChromaDB, and Groq (gpt-oss-120b) that answers employee questions based on company HR policy PDFs with page-level citations and an automated LLM-as-a-Judge evaluation framework.
 
 ---
 
