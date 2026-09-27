@@ -4,6 +4,12 @@ A Retrieval-Augmented Generation (RAG) chatbot built with LangChain, ChromaDB, a
 
 ---
 
+## 🎬 Interactive Demo
+
+<img width="1901" height="876" alt="Animation" src="https://github.com/user-attachments/assets/97c646d9-78e5-4857-ada7-1c307e974a7f" />
+
+---
+
 ## ⚡ Features
 
 - **Document Q&A:** Answers employee questions strictly based on local HR policy PDFs.
