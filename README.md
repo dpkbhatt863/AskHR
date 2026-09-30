@@ -1,4 +1,4 @@
-# 🏢 AskHR — AI Assistant for Employee Policies
+# AskHR - AI Assistant for Employee Policies
 
 A Retrieval-Augmented Generation (RAG) chatbot built with LangChain, ChromaDB, and Groq (gpt-oss-120b) that answers employee questions based on company HR policy PDFs with page-level citations and an automated LLM-as-a-Judge evaluation framework.
 
@@ -10,7 +10,7 @@ A Retrieval-Augmented Generation (RAG) chatbot built with LangChain, ChromaDB, a
 
 ---
 
-## ⚡ Features
+## Features
 
 - **Document Q&A:** Answers employee questions strictly based on local HR policy PDFs.
 - **Source Citations:** Every response includes the source filename and page number.
@@ -20,7 +20,7 @@ A Retrieval-Augmented Generation (RAG) chatbot built with LangChain, ChromaDB, a
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Component | Technology |
 |---|---|
@@ -33,7 +33,7 @@ A Retrieval-Augmented Generation (RAG) chatbot built with LangChain, ChromaDB, a
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 AskHR/
@@ -56,7 +56,7 @@ AskHR/
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Clone & Install Dependencies
 
@@ -95,7 +95,7 @@ streamlit run app.py
 
 ---
 
-## 📊 Evaluation Benchmark
+## Evaluation Benchmark
 
 The app includes an LLM-as-a-Judge framework (`core/evaluator.py`) using Groq to score outputs against ground-truth reference answers in `eval/test_dataset.json`:
 
