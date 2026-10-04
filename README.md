@@ -33,6 +33,19 @@ A Retrieval-Augmented Generation (RAG) chatbot built with LangChain, ChromaDB, a
 
 ---
 
+## 🧪 LLM-as-a-Judge Evaluation
+
+A separate judge LLM (`qwen/qwen3.8-27b`) scores every RAG response against a reference answer on three dimensions, using a 10-question test set spanning easy and medium difficulty.
+
+| Metric | Score |
+|---|---|
+| Context Relevance | 100% |
+| Faithfulness | 100% |
+| Correctness | 93% |
+| Avg Latency | 1.22s |
+
+<img width="986" height="642" alt="image" src="https://github.com/user-attachments/assets/3e146110-9b82-493a-a0f3-167aefbf161d" />
+
 ## Project Structure
 
 ```
