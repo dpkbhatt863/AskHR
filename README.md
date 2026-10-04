@@ -39,12 +39,12 @@ A separate judge LLM (`qwen/qwen3.8-27b`) scores every RAG response against a re
 
 | Metric | Score |
 |---|---|
-| Context Relevance | 100% |
-| Faithfulness | 100% |
-| Correctness | 93% |
-| Avg Latency | 1.22s |
+| Context Relevance | 98% |
+| Faithfulness | 99% |
+| Correctness | 90% |
+| Avg Latency | 1.44s |
 
-<img width="986" height="642" alt="image" src="https://github.com/user-attachments/assets/3e146110-9b82-493a-a0f3-167aefbf161d" />
+<img width="983" height="718" alt="image" src="https://github.com/user-attachments/assets/2a6db40d-9a81-4bf4-8046-75554f150860" />
 
 ## Project Structure
 
