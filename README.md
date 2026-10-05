@@ -33,6 +33,16 @@ A Retrieval-Augmented Generation (RAG) chatbot built with LangChain, ChromaDB, a
 
 ---
 
+## Evaluation Benchmark
+
+The app includes an LLM-as-a-Judge framework (`core/evaluator.py`) using Groq to score outputs against ground-truth reference answers in `eval/test_dataset.json`:
+
+- **Context Relevance:** Evaluates vector search chunk quality.
+- **Faithfulness:** Verifies responses are strictly grounded in context without hallucination.
+- **Answer Correctness:** Measures factual alignment against target reference answers.
+
+---
+
 ## 🧪 LLM-as-a-Judge Evaluation
 
 A separate judge LLM (`qwen/qwen3.8-27b`) scores every RAG response against a reference answer on three dimensions, using a 30-question test set spanning easy and medium difficulty.
@@ -107,11 +117,3 @@ streamlit run app.py
 3. On first launch, click **Index PDFs from Data Folder** to build the vector store.
 
 ---
-
-## Evaluation Benchmark
-
-The app includes an LLM-as-a-Judge framework (`core/evaluator.py`) using Groq to score outputs against ground-truth reference answers in `eval/test_dataset.json`:
-
-- **Context Relevance:** Evaluates vector search chunk quality.
-- **Faithfulness:** Verifies responses are strictly grounded in context without hallucination.
-- **Answer Correctness:** Measures factual alignment against target reference answers.
