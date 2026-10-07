@@ -1,6 +1,6 @@
 {
   "dataset_name": "Nexora HR Policy RAG Evaluation Set",
-  "description": "10 test questions (easy to medium difficulty) for evaluating retrieval and answer quality against the Nexora Technologies HR Policy Handbook (Parts 1-3).",
+  "description": "30 test questions (easy to hard) for evaluating retrieval and answer quality against the Nexora Technologies HR Policy Handbook (Parts 1-3).",
   "source_documents": [
     "nexora_hr_policy_part1.pdf",
     "nexora_hr_policy_part2.pdf",
@@ -86,6 +86,166 @@
       "expected_answer": "No. Gifts, meals, or entertainment valued above INR 2,000 must be declared to HR within 7 days. Cash or cash equivalents must never be accepted, regardless of value.",
       "source_document": "nexora_hr_policy_part2.pdf",
       "source_section": "8.4 Gifts and Hospitality"
+    },
+    {
+      "id": 11,
+      "difficulty": "easy",
+      "question": "How many public holidays does the Company declare each year?",
+      "expected_answer": "10 public holidays each year, published on the HR portal in December of the preceding year.",
+      "source_document": "nexora_hr_policy_part1.pdf",
+      "source_section": "4.6 Public Holidays and Optional Holidays"
+    },
+    {
+      "id": 12,
+      "difficulty": "easy",
+      "question": "What is the employer's Provident Fund contribution rate?",
+      "expected_answer": "12 percent of the Basic Salary, matching the employee's own 12 percent contribution.",
+      "source_document": "nexora_hr_policy_part2.pdf",
+      "source_section": "6.3 Provident Fund (PF)"
+    },
+    {
+      "id": 13,
+      "difficulty": "easy",
+      "question": "How many free counselling sessions does the Employee Assistance Programme offer per person per year?",
+      "expected_answer": "6 free sessions per person per year, for the employee and their immediate family.",
+      "source_document": "nexora_hr_policy_part2.pdf",
+      "source_section": "6.10 Employee Assistance Programme"
+    },
+    {
+      "id": 14,
+      "difficulty": "easy",
+      "question": "How many days of paid bereavement leave is an employee entitled to per event?",
+      "expected_answer": "5 days of paid bereavement leave per event, for the death of an immediate family member.",
+      "source_document": "nexora_hr_policy_part1.pdf",
+      "source_section": "4.10 Bereavement Leave"
+    },
+    {
+      "id": 15,
+      "difficulty": "easy",
+      "question": "What is the dress code on Fridays?",
+      "expected_answer": "Casual dress is permitted on Fridays; the general dress code is business casual, with formal dress expected for client-facing meetings.",
+      "source_document": "nexora_hr_policy_part2.pdf",
+      "source_section": "8.7 Dress Code"
+    },
+    {
+      "id": 16,
+      "difficulty": "medium",
+      "question": "How many years of continuous service are required for gratuity eligibility, and is this condition ever waived?",
+      "expected_answer": "5 or more years of continuous service, calculated as 15 days' last drawn basic salary per completed year, subject to a statutory maximum of INR 20 lakh. The 5-year condition is waived in the event of death or disability.",
+      "source_document": "nexora_hr_policy_part2.pdf",
+      "source_section": "6.4 Gratuity"
+    },
+    {
+      "id": 17,
+      "difficulty": "medium",
+      "question": "How many working days per year can an employee use under the Work From Anywhere policy, and is it available during the notice period?",
+      "expected_answer": "Up to 20 working days per calendar year, with manager approval at least 10 working days in advance. It is not available during probation, during a Performance Improvement Plan, or during the notice period.",
+      "source_document": "nexora_hr_policy_part1.pdf",
+      "source_section": "5.2 Work From Anywhere (WFA)"
+    },
+    {
+      "id": 18,
+      "difficulty": "medium",
+      "question": "How long does a Performance Improvement Plan last, and what happens if an employee does not successfully complete it?",
+      "expected_answer": "A PIP lasts 60 days with fortnightly manager check-ins. If not successfully completed, the Company may take further action, including termination with notice or pay in lieu of notice.",
+      "source_document": "nexora_hr_policy_part2.pdf",
+      "source_section": "7.4 Performance Improvement Plan (PIP)"
+    },
+    {
+      "id": 19,
+      "difficulty": "medium",
+      "question": "What is the composition requirement for the Internal Committee under the POSH policy?",
+      "expected_answer": "Headed by a senior woman employee as Presiding Officer, at least four members including one external member from an NGO or someone familiar with sexual harassment issues, and at least half the members must be women.",
+      "source_document": "nexora_hr_policy_part2.pdf",
+      "source_section": "9.3 Internal Committee (IC)"
+    },
+    {
+      "id": 20,
+      "difficulty": "medium",
+      "question": "If an employee disagrees with their manager's response to a grievance, what is the next escalation step and how long does it take?",
+      "expected_answer": "Escalate to the HR Business Partner (Level 2), who will respond within 7 working days. If still unresolved, it goes to the Grievance Committee (Level 3), which issues a final decision within 15 working days.",
+      "source_document": "nexora_hr_policy_part3.pdf",
+      "source_section": "10.1 Grievance Redressal"
+    },
+    {
+      "id": 21,
+      "difficulty": "medium",
+      "question": "How many days of comp-off does an L2 employee earn for working a full day on a public holiday, and by when must it be used?",
+      "expected_answer": "One full day of comp-off for a full day worked, must be availed within 60 days of the date worked or it lapses; comp-offs are not encashable.",
+      "source_document": "nexora_hr_policy_part1.pdf",
+      "source_section": "2.4 Overtime and Compensatory Off"
+    },
+    {
+      "id": 22,
+      "difficulty": "medium",
+      "question": "Within how many days must an employee submit an expense claim, and what happens if they miss that deadline?",
+      "expected_answer": "Within 30 days of the expense. Claims submitted after 30 days require additional approval from the Finance Head.",
+      "source_document": "nexora_hr_policy_part3.pdf",
+      "source_section": "11.3 Claim Submission"
+    },
+    {
+      "id": 23,
+      "difficulty": "medium",
+      "question": "How often must an employee change their Company account password, and what additional security measure is required?",
+      "expected_answer": "Passwords must be changed every 90 days, and multi-factor authentication (MFA) must be enabled on all Company accounts.",
+      "source_document": "nexora_hr_policy_part3.pdf",
+      "source_section": "12.2 Passwords and Access"
+    },
+    {
+      "id": 24,
+      "difficulty": "hard",
+      "question": "An employee wants to take 10 consecutive days of leave combining casual leave and earned leave. Is this allowed, and what approval is needed?",
+      "expected_answer": "Casual leave cannot be combined with earned leave to form a continuous absence longer than 7 calendar days without the manager's approval, so a 10-day combined leave would need explicit manager approval beyond the normal process.",
+      "source_document": "nexora_hr_policy_part1.pdf",
+      "source_section": "4.3 Casual Leave"
+    },
+    {
+      "id": 25,
+      "difficulty": "hard",
+      "question": "If a Company-sponsored certification costs INR 60,000 and the employee resigns 6 months after completing it, what happens financially?",
+      "expected_answer": "Because the certification cost more than INR 50,000, the employee must serve at least 12 months after completion or repay the cost on a pro-rata basis; resigning after only 6 months means a pro-rata repayment is owed.",
+      "source_document": "nexora_hr_policy_part2.pdf",
+      "source_section": "6.9 Learning and Development"
+    },
+    {
+      "id": 26,
+      "difficulty": "hard",
+      "question": "Can an employee take up a paid freelance consulting project on the side while employed at Nexora?",
+      "expected_answer": "No, not without prior written approval from the Chief People Officer. Unpaid personal projects that don't use Company resources or compete with the Company are permitted but should be declared to the manager.",
+      "source_document": "nexora_hr_policy_part2.pdf",
+      "source_section": "8.3 Outside Employment (Moonlighting)"
+    },
+    {
+      "id": 27,
+      "difficulty": "hard",
+      "question": "An employee's last working day is 15 June. By what date should the Full and Final settlement be processed, and what documents should they expect to receive?",
+      "expected_answer": "The F&F settlement should be processed within 45 days of the last working day (by around 30 July). The employee should receive a relieving letter and an experience letter upon completion, provided exit formalities and notice period are complete.",
+      "source_document": "nexora_hr_policy_part3.pdf",
+      "source_section": "13.3 Full and Final (F&F) Settlement; 13.4 Documents Issued at Exit"
+    },
+    {
+      "id": 28,
+      "difficulty": "hard",
+      "question": "Does the HR policy handbook specify the exact amount of annual bonus every employee receives?",
+      "expected_answer": "No, this is not specified. The handbook describes variable pay as linked to individual performance and Company results, with the target percentage stated in the individual's appointment letter, not a single fixed amount for all employees.",
+      "source_document": "nexora_hr_policy_part2.pdf",
+      "source_section": "6.7 Variable Pay"
+    },
+    {
+      "id": 29,
+      "difficulty": "hard",
+      "question": "What is the Company's policy on employees using personal laptops to access client data remotely?",
+      "expected_answer": "This is not directly addressed in the handbook. The policy states that confidential and client data must be stored only on Company-approved systems, and prohibits personal cloud storage and unapproved devices for storing or transferring Company data, which implies personal laptops are not an approved channel, but personal laptop use specifically is not named.",
+      "source_document": "nexora_hr_policy_part3.pdf",
+      "source_section": "12.3 Data Handling"
+    },
+    {
+      "id": 30,
+      "difficulty": "hard",
+      "question": "If an employee referred a candidate for an L6 role who was hired and completed 6 months of service, how much referral bonus would they receive, and would the hiring manager also be eligible?",
+      "expected_answer": "INR 50,000, since roles at L5 and above earn the higher referral bonus tier. The hiring manager is not eligible for the referral bonus.",
+      "source_document": "nexora_hr_policy_part2.pdf",
+      "source_section": "6.8 Referral Bonus"
     }
   ]
 }

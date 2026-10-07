@@ -1,3 +1,13 @@
-data
-app.py
+# NEVER push API keys
 .env
+
+# NEVER push auto-generated databases
+data/chroma_db/
+data/hr_app.db
+data/*.db
+
+# NEVER push virtual environments or cache
+venv/
+.venv/
+__pycache__/
+*.pyc
