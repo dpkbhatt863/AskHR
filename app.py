@@ -14,13 +14,14 @@ st.set_page_config(page_title="AskHR", layout="centered")
 
 SAMPLES = [
     "What are the standard working hours?",
-    "How many casual leave days do I get per year?",
-    "What is the probation period for a new employee?",
+    "How many casual leave days do I get?",
+    "What is the probation period?",
     "What is the health insurance coverage?",
+    "What is the notice period for resignation?",
+    "Can I accept a gift from a vendor?",
 ]
 
 def show_evaluator():
-    # Set SHOW_EVALUATOR=true in local .env only. Do not set it on Streamlit Cloud.
     val = os.getenv("SHOW_EVALUATOR", "")
     try:
         val = val or st.secrets.get("SHOW_EVALUATOR", "")
@@ -32,14 +33,52 @@ if "pending" not in st.session_state:
     st.session_state.pending = None
 if "eval_results" not in st.session_state:
     st.session_state.eval_results = None
+if "page" not in st.session_state:
+    st.session_state.page = "chat"
 
-pages = ["Chat", "Evaluator"] if show_evaluator() else ["Chat"]
-page = st.sidebar.radio("Go to", pages)
-st.sidebar.caption("Answers come only from company HR policy documents.")
 
-if page == "Chat":
+# ── Sidebar ──────────────────────────────────────────────────────────────────
+with st.sidebar:
     st.title("AskHR")
-    st.caption("Ask about leave, working hours, benefits, or notice period.")
+    st.caption("AI assistant for company HR policies")
+
+    st.markdown(
+        "Ask about leave, working hours, benefits, "
+        "notice period, code of conduct, and more. "
+        "Answers are grounded in official policy PDFs with source citations."
+    )
+
+    st.divider()
+    st.markdown("**Quick asks**")
+    for i, q in enumerate(SAMPLES):
+        if st.button(q, key=f"side_q_{i}", use_container_width=True):
+            st.session_state.pending = q
+            st.session_state.page = "chat"
+            st.rerun()
+
+    st.divider()
+    if collection_count() > 0:
+        st.success(f"{collection_count()} policy chunks indexed")
+    else:
+        st.warning("Policies not indexed yet")
+
+    st.caption("For case-specific decisions, contact HR.")
+
+    if show_evaluator():
+        st.divider()
+        if st.button("Open Evaluator", use_container_width=True):
+            st.session_state.page = "eval"
+            st.rerun()
+        if st.session_state.page == "eval":
+            if st.button("Back to Chat", use_container_width=True):
+                st.session_state.page = "chat"
+                st.rerun()
+
+
+# ── Chat ─────────────────────────────────────────────────────────────────────
+if st.session_state.page == "chat" or not show_evaluator():
+    st.title("AskHR")
+    st.caption("Your AI assistant for leave, benefits, attendance, and workplace policies.")
 
     if collection_count() == 0:
         st.warning("Policies are not indexed yet.")
@@ -48,17 +87,9 @@ if page == "Chat":
                 load_and_index_policies()
             st.rerun()
     else:
-        c1, c2 = st.columns([1, 4])
-        if c1.button("Clear chat"):
+        if st.button("Clear chat"):
             clear_chat_history()
             st.rerun()
-
-        st.write("Try a sample question")
-        cols = st.columns(2)
-        for i, q in enumerate(SAMPLES):
-            if cols[i % 2].button(q, key=f"sample_{i}"):
-                st.session_state.pending = q
-                st.rerun()
 
         for entry in get_chat_history():
             with st.chat_message("user"):
@@ -89,12 +120,14 @@ if page == "Chat":
             add_chat_entry(question, res["answer"], res["sources"])
             st.rerun()
 
-elif page == "Evaluator":
+
+# ── Evaluator (local only when SHOW_EVALUATOR=true) ──────────────────────────
+elif st.session_state.page == "eval" and show_evaluator():
     st.title("Evaluator")
     st.caption("Local demo only. Runs the full test set and can take a minute.")
 
     if collection_count() == 0:
-        st.error("Index the policies from the Chat page first.")
+        st.error("Index the policies from Chat first.")
     else:
         label = "Run evaluation" if st.session_state.eval_results is None else "Re-run evaluation"
         if st.button(label):
