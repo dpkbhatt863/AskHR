@@ -12,6 +12,10 @@ init_db()
 
 st.set_page_config(page_title="AskHR", layout="centered")
 
+if collection_count() == 0:
+    with st.spinner("Initializing HR policy knowledge base..."):
+        load_and_index_policies()
+
 SAMPLES = [
     "What are the standard working hours?",
     "How many casual leave days do I get?",
@@ -36,8 +40,7 @@ if "eval_results" not in st.session_state:
 if "page" not in st.session_state:
     st.session_state.page = "chat"
 
-
-# ── Sidebar ──────────────────────────────────────────────────────────────────
+#sidebar section
 with st.sidebar:
     st.title("AskHR")
     st.caption("AI assistant for company HR policies")
@@ -57,11 +60,7 @@ with st.sidebar:
             st.rerun()
 
     st.divider()
-    if collection_count() > 0:
-        st.success(f"{collection_count()} policy chunks indexed")
-    else:
-        st.warning("Policies not indexed yet")
-
+    st.caption(f"🟢 {collection_count()} policy chunks ready")
     st.caption("For case-specific decisions, contact HR.")
 
     if show_evaluator():
@@ -75,85 +74,77 @@ with st.sidebar:
                 st.rerun()
 
 
-# ── Chat ─────────────────────────────────────────────────────────────────────
+#chat section
 if st.session_state.page == "chat" or not show_evaluator():
     st.title("AskHR")
     st.caption("Your AI assistant for leave, benefits, attendance, and workplace policies.")
 
-    if collection_count() == 0:
-        st.warning("Policies are not indexed yet.")
-        if st.button("Index PDFs"):
-            with st.spinner("Indexing policies..."):
-                load_and_index_policies()
-            st.rerun()
-    else:
-        if st.button("Clear chat"):
-            clear_chat_history()
-            st.rerun()
+    if st.button("Clear chat"):
+        clear_chat_history()
+        st.rerun()
 
-        for entry in get_chat_history():
-            with st.chat_message("user"):
-                st.write(entry["question"])
-            with st.chat_message("assistant"):
-                st.markdown(entry["answer"])
-                if entry["sources"]:
-                    with st.expander("Sources"):
-                        for s in entry["sources"]:
-                            st.write(f"**{s['source']}**, page {s['page']}")
-                            st.caption(s["text"][:300])
+    # Render previous conversation history
+    for entry in get_chat_history():
+        with st.chat_message("user"):
+            st.write(entry["question"])
+        with st.chat_message("assistant"):
+            st.markdown(entry["answer"])
+            if entry["sources"]:
+                with st.expander("Sources"):
+                    for s in entry["sources"]:
+                        st.write(f"**{s['source']}**, page {s['page']}")
+                        st.caption(s["text"][:300])
 
-        question = st.session_state.pending or st.chat_input("Ask about an HR policy...")
-        st.session_state.pending = None
+    # Input logic
+    question = st.session_state.pending or st.chat_input("Ask about an HR policy...")
+    st.session_state.pending = None
 
-        if question:
-            with st.chat_message("user"):
-                st.write(question)
-            with st.chat_message("assistant"):
-                with st.spinner("Checking the policy documents..."):
-                    res = ask_question(question)
-                st.markdown(res["answer"])
-                if res["sources"]:
-                    with st.expander("Sources"):
-                        for s in res["sources"]:
-                            st.write(f"**{s['source']}**, page {s['page']}")
-                            st.caption(s["text"][:300])
-            add_chat_entry(question, res["answer"], res["sources"])
-            st.rerun()
+    if question:
+        with st.chat_message("user"):
+            st.write(question)
+        with st.chat_message("assistant"):
+            with st.spinner("Checking policy documents..."):
+                res = ask_question(question)
+            st.markdown(res["answer"])
+            if res["sources"]:
+                with st.expander("Sources"):
+                    for s in res["sources"]:
+                        st.write(f"**{s['source']}**, page {s['page']}")
+                        st.caption(s["text"][:300])
+        add_chat_entry(question, res["answer"], res["sources"])
+        st.rerun()
 
 
-# ── Evaluator (local only when SHOW_EVALUATOR=true) ──────────────────────────
+#evaluator section (only for local run)
 elif st.session_state.page == "eval" and show_evaluator():
     st.title("Evaluator")
     st.caption("Local demo only. Runs the full test set and can take a minute.")
 
-    if collection_count() == 0:
-        st.error("Index the policies from Chat first.")
-    else:
-        label = "Run evaluation" if st.session_state.eval_results is None else "Re-run evaluation"
-        if st.button(label):
-            with st.spinner("Running the test questions. This can take a minute."):
-                st.session_state.eval_results = run_full_evaluation()
-            st.rerun()
+    label = "Run evaluation" if st.session_state.eval_results is None else "Re-run evaluation"
+    if st.button(label):
+        with st.spinner("Running test dataset evaluation..."):
+            st.session_state.eval_results = run_full_evaluation()
+        st.rerun()
 
-        res = st.session_state.eval_results
-        if not res:
-            st.info("Run the evaluation when you want fresh scores.")
-        elif "error" in res:
-            st.error(res["error"])
-        else:
-            s = res["summary"]
-            c1, c2, c3, c4 = st.columns(4)
-            c1.metric("Context relevance", f"{s['avg_context_relevance']:.0%}")
-            c2.metric("Faithfulness", f"{s['avg_faithfulness']:.0%}")
-            c3.metric("Correctness", f"{s['avg_correctness']:.0%}")
-            c4.metric("Avg latency", f"{s['avg_latency']}s")
-            st.divider()
-            for r in res["details"]:
-                sc = r["scores"]
-                with st.expander(r["question"]):
-                    st.write(r["answer"])
-                    st.caption(
-                        f"Relevance {sc['context_relevance']} | "
-                        f"Faithfulness {sc['faithfulness']} | "
-                        f"Correctness {sc['correctness']}"
-                    )
+    res = st.session_state.eval_results
+    if not res:
+        st.info("Click the button above to run the evaluation.")
+    elif "error" in res:
+        st.error(res["error"])
+    else:
+        s = res["summary"]
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("Context relevance", f"{s['avg_context_relevance']:.0%}")
+        c2.metric("Faithfulness", f"{s['avg_faithfulness']:.0%}")
+        c3.metric("Correctness", f"{s['avg_correctness']:.0%}")
+        c4.metric("Avg latency", f"{s['avg_latency']}s")
+        st.divider()
+        for r in res["details"]:
+            sc = r["scores"]
+            with st.expander(r["question"]):
+                st.write(r["answer"])
+                st.caption(
+                    f"Relevance {sc['context_relevance']} | "
+                    f"Faithfulness {sc['faithfulness']} | "
+                    f"Correctness {sc['correctness']}"
+                )
